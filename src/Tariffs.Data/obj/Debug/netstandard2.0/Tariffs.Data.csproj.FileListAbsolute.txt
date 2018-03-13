@@ -1,0 +1,9 @@
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\bin\Debug\netstandard2.0\Tariffs.Data.deps.json
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\bin\Debug\netstandard2.0\Tariffs.Data.dll
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\bin\Debug\netstandard2.0\Tariffs.Data.pdb
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\obj\Debug\netstandard2.0\Tariffs.Data.csproj.CoreCompileInputs.cache
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\obj\Debug\netstandard2.0\Tariffs.Data.AssemblyInfoInputs.cache
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\obj\Debug\netstandard2.0\Tariffs.Data.AssemblyInfo.cs
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\obj\Debug\netstandard2.0\Tariffs.Data.dll
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\obj\Debug\netstandard2.0\Tariffs.Data.pdb
+C:\Projects\Personal\Tariffs\src\Tariffs.Data\obj\Debug\netstandard2.0\Tariffs.Data.csprojResolveAssemblyReference.cache

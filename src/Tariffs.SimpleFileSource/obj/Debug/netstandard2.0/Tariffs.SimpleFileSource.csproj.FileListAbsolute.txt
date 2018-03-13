@@ -1,0 +1,11 @@
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\bin\Debug\netstandard2.0\Tariffs.SimpleFileSource.deps.json
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\bin\Debug\netstandard2.0\Tariffs.SimpleFileSource.dll
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\bin\Debug\netstandard2.0\Tariffs.SimpleFileSource.pdb
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\bin\Debug\netstandard2.0\Tariffs.Data.dll
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\bin\Debug\netstandard2.0\Tariffs.Data.pdb
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\obj\Debug\netstandard2.0\Tariffs.SimpleFileSource.csproj.CoreCompileInputs.cache
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\obj\Debug\netstandard2.0\Tariffs.SimpleFileSource.AssemblyInfoInputs.cache
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\obj\Debug\netstandard2.0\Tariffs.SimpleFileSource.AssemblyInfo.cs
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\obj\Debug\netstandard2.0\Tariffs.SimpleFileSource.dll
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\obj\Debug\netstandard2.0\Tariffs.SimpleFileSource.pdb
+C:\Projects\Personal\Tariffs\src\Tariffs.SimpleFileSource\obj\Debug\netstandard2.0\Tariffs.SimpleFileSource.csprojResolveAssemblyReference.cache

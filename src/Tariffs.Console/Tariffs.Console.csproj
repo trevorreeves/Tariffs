@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tariffs.Calc\Tariffs.Calc.csproj" />
+    <ProjectReference Include="..\Tariffs.CommandLine\Tariffs.CommandLine.csproj" />
+    <ProjectReference Include="..\Tariffs.Common\Tariffs.Common.csproj" />
+    <ProjectReference Include="..\Tariffs.SimpleFileSource\Tariffs.SimpleFileSource.csproj" />
+  </ItemGroup>
+
+</Project>
