@@ -3,27 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Calc", "Tariffs.Calc\Tariffs.Calc.csproj", "{F3A8D9BB-92B5-416A-B55E-42C0C6A7561C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Calc", "src\Tariffs.Calc\Tariffs.Calc.csproj", "{F3A8D9BB-92B5-416A-B55E-42C0C6A7561C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data", "Tariffs.Data\Tariffs.Data.csproj", "{B7720652-856E-417D-ABA8-457E452C9A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data", "src\Tariffs.Data\Tariffs.Data.csproj", "{B7720652-856E-417D-ABA8-457E452C9A26}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Console", "Tariffs.Console\Tariffs.Console.csproj", "{030433B8-DEEA-40ED-88A6-B776AB81C7DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Console", "src\Tariffs.Console\Tariffs.Console.csproj", "{030433B8-DEEA-40ED-88A6-B776AB81C7DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Common", "Tariffs.Common\Tariffs.Common.csproj", "{29180158-C32E-4DCA-93DB-9F533F03AA2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Common", "src\Tariffs.Common\Tariffs.Common.csproj", "{29180158-C32E-4DCA-93DB-9F533F03AA2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.CommandLine", "Tariffs.CommandLine\Tariffs.CommandLine.csproj", "{D298EB2A-C964-495A-9388-9B6344DEA9A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.CommandLine", "src\Tariffs.CommandLine\Tariffs.CommandLine.csproj", "{D298EB2A-C964-495A-9388-9B6344DEA9A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{068309FC-C842-4B69-8EB9-A7A5E9D097E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{02D5F8AF-BA60-4177-A139-12115B3477B3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Calc.Tests", "..\tests\Tariffs.Calc.Tests\Tariffs.Calc.Tests.csproj", "{2E26F7BD-7ED4-4C89-8456-D234BD1278D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Calc.Tests", "tests\Tariffs.Calc.Tests\Tariffs.Calc.Tests.csproj", "{2E26F7BD-7ED4-4C89-8456-D234BD1278D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data.SimpleFile", "Tariffs.Data.SimpleFile\Tariffs.Data.SimpleFile.csproj", "{38A1FF8C-5663-438E-8320-C1BCE202C32D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data.SimpleFile", "src\Tariffs.Data.SimpleFile\Tariffs.Data.SimpleFile.csproj", "{38A1FF8C-5663-438E-8320-C1BCE202C32D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data.SimpleFile.Tests", "..\tests\Tariffs.Data.SimpleFile.Tests\Tariffs.Data.SimpleFile.Tests.csproj", "{A05C68FD-FC26-4947-AB62-BF8A81B600D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data.SimpleFile.Tests", "tests\Tariffs.Data.SimpleFile.Tests\Tariffs.Data.SimpleFile.Tests.csproj", "{A05C68FD-FC26-4947-AB62-BF8A81B600D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tariffs.Data.Tests", "..\tests\Tariffs.Data.Tests\Tariffs.Data.Tests.csproj", "{2C1D5655-1420-48D6-8B24-1DB5982130FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tariffs.Data.Tests", "tests\Tariffs.Data.Tests\Tariffs.Data.Tests.csproj", "{2C1D5655-1420-48D6-8B24-1DB5982130FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
