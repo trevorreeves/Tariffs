@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Tariffs.Calc.Units;
@@ -10,29 +11,32 @@ namespace Tariffs.Calc
         public static IEnumerable<UsageCost> CostsPerTariffFor(IEnumerable<Tariff> tariffs, Kwh<Power> powerUsage, Kwh<Gas> gasUsage)
         {
             return tariffs
-                .Select(tariff =>
-                { // TODO: seperate into seperate function
-                    var gas = tariff.GasRate * gasUsage;
-                    var power = tariff.PowerRate * powerUsage;
-                    var total = TaxedValue.FromPreTaxValue(gas + power + tariff.StandingCharge * 2, TaxHelper.ApplyTax);
-
-                    return new UsageCost(tariff, gas, power, total);
-                })
+                .Select(tariff => CalculateCost(tariff, powerUsage, gasUsage))
                 .OrderBy(costs => costs.Total.PostTax);
         }
 
-        public static Kwh<Gas> AnnualGasUsageFor(Tariff tariff, TaxedValue monthlyBudget)
+        private static UsageCost CalculateCost(Tariff tariff, Kwh<Power> powerUsage, Kwh<Gas> gasUsage)
         {
-            // TODO: no rate defined in tariff
-            var annualKwhBudget = (monthlyBudget.PreTax - tariff.StandingCharge) * 12;
-            return new Kwh<Gas>(annualKwhBudget * tariff.GasRate);
+            var gas = tariff.GasRate * gasUsage ?? 0;
+            var power = tariff.PowerRate * powerUsage ?? 0;
+
+            var total = TaxedValue.FromPreTaxValue(gas + power + tariff.StandingCharge * 2, TaxHelper.ApplyTax);
+
+            return new UsageCost(tariff, gas, power, total);
         }
 
-        public static Kwh<Power> AnnualPowerUsageFor(Tariff tariff, TaxedValue monthlyBudget)
+        public static Kwh<Gas>? AnnualGasUsageFor(Tariff tariff, TaxedValue monthlyBudget)
         {
-            // TODO: no rate defined in tariff
-            var annualKwhBudget = (monthlyBudget.PreTax - tariff.StandingCharge) * 12;
-            return new Kwh<Power>(annualKwhBudget * tariff.PowerRate);
+            return !tariff.GasRate.HasValue
+                ? new Kwh<Gas>?()
+                : new Kwh<Gas>((monthlyBudget.PreTax - tariff.StandingCharge) * 12 * tariff.GasRate.Value);
+        }
+
+        public static Kwh<Power>? AnnualPowerUsageFor(Tariff tariff, TaxedValue monthlyBudget)
+        {
+            return !tariff.PowerRate.HasValue
+                ? new Kwh<Power>?()
+                : new Kwh<Power>((monthlyBudget.PreTax - tariff.StandingCharge) * 12 * tariff.PowerRate.Value);
         }
     }
 }

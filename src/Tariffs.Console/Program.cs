@@ -18,7 +18,7 @@ namespace Tariffs.Console
 
             // TODO: Tariffs will only ever be a small data set (10s not 1000s), so we'll always want to keep it in memory.
             // But they might be modified during the lifetime of the app (if it becomes long running), so support reloading data...
-            // new SimpleFileWatcher(file)
+            // var watcher = new SimpleFileWatcher(file)
             // watcher.Changes.Subscribe(ctx => source.Reload().Wait());
 
             var commands = new[]
@@ -54,13 +54,17 @@ namespace Tariffs.Console
                             return Commands.Error($"The specified tariff doesn't exist '{tariffName}'.");
                         }
 
+                        // c# has no proper pattern matching, so I've run out of functional luck here...
+
                         switch (fuelType)
                         {
                             case FuelType.Gas:
-                                ctx.Output.WriteLine(UsageCalculator.AnnualGasUsageFor(tariff, monthlyBudget).Value);
+                                if (!tariff.GasRate.HasValue) return Commands.Error($"Tariff '{tariff.Name}' does not include {FuelType.Gas}.");
+                                ctx.Output.WriteLine(UsageCalculator.AnnualGasUsageFor(tariff, monthlyBudget).GetValueOrDefault().Value); // just output 0 if tariff doesn't include fuel type
                                 break;
                             case FuelType.Power:
-                                ctx.Output.WriteLine(UsageCalculator.AnnualPowerUsageFor(tariff, monthlyBudget).Value);
+                                if (!tariff.PowerRate.HasValue) return Commands.Error($"Tariff '{tariff.Name}' does not include {FuelType.Power}.");
+                                ctx.Output.WriteLine(UsageCalculator.AnnualPowerUsageFor(tariff, monthlyBudget).GetValueOrDefault().Value);
                                 break;
                             default:
                                 return Commands.Error($"Unsupported fuel type : {fuelType}");
