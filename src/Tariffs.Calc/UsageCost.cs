@@ -4,7 +4,7 @@ namespace Tariffs.Calc
 {
     public class UsageCost 
     {
-        public UsageCost(Tariff tariff, decimal gasPrice, decimal powerPrice, TaxedValue total)
+        public UsageCost(Tariff tariff, decimal? gasPrice, decimal? powerPrice, TaxedValue total)
         {
             GasPrice = gasPrice;
             PowerPrice = powerPrice;
@@ -12,9 +12,9 @@ namespace Tariffs.Calc
             Total = total;
         }
 
-        public decimal GasPrice { get; }
+        public decimal? GasPrice { get; }
 
-        public decimal PowerPrice { get; }
+        public decimal? PowerPrice { get; }
 
         public Tariff Tariff { get; }
 

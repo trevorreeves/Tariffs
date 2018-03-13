@@ -31,8 +31,8 @@ namespace Tariffs.Console
                         var powerKwh = new Kwh<Power>(ctx.GetRequiredDecimal("POWER_USAGE_KWH"));
                         var gasKwh = new Kwh<Gas>(ctx.GetRequiredDecimal("GAS_USAGE_KWH"));
 
-                        foreach (var line in UsageCalculator
-                            .CostsPerTariffFor(source.GetAll(), powerKwh, gasKwh)
+                        foreach (var line in FuelCalculator
+                            .CostsPerTariff(source.GetAll(), powerKwh, gasKwh)
                             .Select(cost => $"{cost.Tariff.Name} {cost.Total.PostTax:F2}"))
                         {
                             ctx.Output.WriteLine(line);
@@ -60,11 +60,11 @@ namespace Tariffs.Console
                         {
                             case FuelType.Gas:
                                 if (!tariff.GasRate.HasValue) return Commands.Error($"Tariff '{tariff.Name}' does not include {FuelType.Gas}.");
-                                ctx.Output.WriteLine(UsageCalculator.AnnualGasUsageFor(tariff, monthlyBudget).GetValueOrDefault().Value); // just output 0 if tariff doesn't include fuel type
+                                ctx.Output.WriteLine(FuelCalculator.AnnualGasUsage(tariff, monthlyBudget).GetValueOrDefault().Value); // just output 0 if tariff doesn't include fuel type
                                 break;
                             case FuelType.Power:
                                 if (!tariff.PowerRate.HasValue) return Commands.Error($"Tariff '{tariff.Name}' does not include {FuelType.Power}.");
-                                ctx.Output.WriteLine(UsageCalculator.AnnualPowerUsageFor(tariff, monthlyBudget).GetValueOrDefault().Value);
+                                ctx.Output.WriteLine(FuelCalculator.AnnualPowerUsage(tariff, monthlyBudget).GetValueOrDefault().Value);
                                 break;
                             default:
                                 return Commands.Error($"Unsupported fuel type : {fuelType}");
