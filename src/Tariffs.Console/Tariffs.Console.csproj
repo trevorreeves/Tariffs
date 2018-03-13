@@ -9,7 +9,13 @@
     <ProjectReference Include="..\Tariffs.Calc\Tariffs.Calc.csproj" />
     <ProjectReference Include="..\Tariffs.CommandLine\Tariffs.CommandLine.csproj" />
     <ProjectReference Include="..\Tariffs.Common\Tariffs.Common.csproj" />
-    <ProjectReference Include="..\Tariffs.SimpleFileSource\Tariffs.SimpleFileSource.csproj" />
+    <ProjectReference Include="..\Tariffs.Data.SimpleFile\Tariffs.Data.SimpleFile.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="prices.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
