@@ -18,7 +18,7 @@ namespace Tariffs.Calc
 
                     return new UsageCost(tariff, gas, power, total);
                 })
-                .OrderBy(costs => costs.Total);
+                .OrderBy(costs => costs.Total.PostTax);
         }
 
         public static Kwh<Gas> AnnualGasUsageFor(Tariff tariff, TaxedValue monthlyBudget)

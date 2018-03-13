@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Tariffs.Calc.Tests
 {
-    public class UnitTest1
+    public class UsageCalculatorFixture
     {
         [Fact]
         public void Test1()

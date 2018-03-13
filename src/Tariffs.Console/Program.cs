@@ -26,16 +26,16 @@ namespace Tariffs.Console
                 CommandSpec.Named(
                     "cost",
                     new[] {"POWER_USAGE_KWH", "GAS_USAGE_KWH"},
-                    (ctx, writer) =>
+                    ctx =>
                     {
                         var powerKwh = new Kwh<Power>(ctx.GetRequiredDecimal("POWER_USAGE_KWH"));
                         var gasKwh = new Kwh<Gas>(ctx.GetRequiredDecimal("GAS_USAGE_KWH"));
 
                         foreach (var line in UsageCalculator
                             .CostsPerTariffFor(source.GetAll(), powerKwh, gasKwh)
-                            .Select(cost => $"{cost.Tariff} {cost.Total.PostTax}"))
+                            .Select(cost => $"{cost.Tariff.Name} {cost.Total.PostTax:F2}"))
                         {
-                            writer.WriteLine(line);
+                            ctx.Output.WriteLine(line);
                         }
 
                         return Commands.Ok();
@@ -43,7 +43,7 @@ namespace Tariffs.Console
                 CommandSpec.Named(
                     "usage",
                     new[] {"TARIFF_NAME", "FUEL_TYPE", "TARGET_MONTHLY_SPEND"},
-                    (ctx, writer) =>
+                    ctx =>
                     {
                         var tariffName = ctx.GetRequiredString("TARIFF_NAME");
                         var fuelType = ctx.GetRequiredEnum<FuelType>("FUEL_TYPE");
@@ -57,10 +57,10 @@ namespace Tariffs.Console
                         switch (fuelType)
                         {
                             case FuelType.Gas:
-                                writer.WriteLine(UsageCalculator.AnnualGasUsageFor(tariff, monthlyBudget).Value);
+                                ctx.Output.WriteLine(UsageCalculator.AnnualGasUsageFor(tariff, monthlyBudget).Value);
                                 break;
                             case FuelType.Power:
-                                writer.WriteLine(UsageCalculator.AnnualPowerUsageFor(tariff, monthlyBudget).Value);
+                                ctx.Output.WriteLine(UsageCalculator.AnnualPowerUsageFor(tariff, monthlyBudget).Value);
                                 break;
                             default:
                                 return Commands.Error($"Unsupported fuel type : {fuelType}");
@@ -70,7 +70,6 @@ namespace Tariffs.Console
                     }),
             };
 
-            Commands.ShowHelp(commands, System.Console.Out);
             Commands.Execute(commands, args, System.Console.Out, System.Console.Error);
         }
 

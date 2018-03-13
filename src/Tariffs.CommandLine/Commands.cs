@@ -42,24 +42,40 @@ namespace Tariffs.CommandLine
         {
             var commandName = args?.FirstOrDefault() ?? string.Empty;
 
-            return commands
+            var command = commands
                 .Concat(new[]
                 {
                     new CommandSpec(
-                        "Unrecognised command fallback",
-                        _ => true,
+                        "No command fallback",
+                        string.IsNullOrWhiteSpace,
                         new string[0],
-                        (ctx, writer) =>
+                        ctx =>
                         {
                             return (info, error) =>
                             {
-                                error.WriteLine("No valid command found.");
+                                ShowHelp(commands, info);
+                            };
+                        }),
+                    new CommandSpec(
+                        "Unrecognised command fallback",
+                        str => !string.IsNullOrWhiteSpace(str),
+                        new string[0],
+                        ctx =>
+                        {
+                            return (info, error) =>
+                            {
+                                error.WriteLine($"No valid command found for '{ctx.CommandName}'.");
                                 ShowHelp(commands, info);
                             };
                         })
                 })
-                .First(c => c.Selector(commandName))
-                .Build(args.Skip(1), output);
+                .First(c => c.Selector(commandName));
+
+            return command.Build(new CommandContext(
+                commandName, 
+                command.Parameters, 
+                args.Skip(1).ToArray(), 
+                output));
         }
 
         private static Func<Action<TextWriter, TextWriter>> HideExceptionDetail(
