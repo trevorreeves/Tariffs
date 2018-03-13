@@ -17,11 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{068309FC-C84
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{02D5F8AF-BA60-4177-A139-12115B3477B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tariffs.Calc.Tests", "..\tests\Tariffs.Calc.Tests\Tariffs.Calc.Tests.csproj", "{2E26F7BD-7ED4-4C89-8456-D234BD1278D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Calc.Tests", "..\tests\Tariffs.Calc.Tests\Tariffs.Calc.Tests.csproj", "{2E26F7BD-7ED4-4C89-8456-D234BD1278D2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data.SimpleFile", "Tariffs.Data.SimpleFile\Tariffs.Data.SimpleFile.csproj", "{38A1FF8C-5663-438E-8320-C1BCE202C32D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tariffs.Data.SimpleFile.Tests", "..\tests\Tariffs.Data.SimpleFile.Tests\Tariffs.Data.SimpleFile.Tests.csproj", "{A05C68FD-FC26-4947-AB62-BF8A81B600D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tariffs.Data.Tests", "..\tests\Tariffs.Data.Tests\Tariffs.Data.Tests.csproj", "{2C1D5655-1420-48D6-8B24-1DB5982130FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,18 @@ Global
 		{A05C68FD-FC26-4947-AB62-BF8A81B600D3}.Release|x64.Build.0 = Release|Any CPU
 		{A05C68FD-FC26-4947-AB62-BF8A81B600D3}.Release|x86.ActiveCfg = Release|Any CPU
 		{A05C68FD-FC26-4947-AB62-BF8A81B600D3}.Release|x86.Build.0 = Release|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Debug|x64.Build.0 = Debug|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Debug|x86.Build.0 = Debug|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Release|x64.ActiveCfg = Release|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Release|x64.Build.0 = Release|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Release|x86.ActiveCfg = Release|Any CPU
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +156,7 @@ Global
 		{2E26F7BD-7ED4-4C89-8456-D234BD1278D2} = {02D5F8AF-BA60-4177-A139-12115B3477B3}
 		{38A1FF8C-5663-438E-8320-C1BCE202C32D} = {068309FC-C842-4B69-8EB9-A7A5E9D097E6}
 		{A05C68FD-FC26-4947-AB62-BF8A81B600D3} = {02D5F8AF-BA60-4177-A139-12115B3477B3}
+		{2C1D5655-1420-48D6-8B24-1DB5982130FA} = {02D5F8AF-BA60-4177-A139-12115B3477B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8974982-C0A3-4E34-9B15-311C9203386F}
