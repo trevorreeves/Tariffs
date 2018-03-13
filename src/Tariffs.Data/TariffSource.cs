@@ -16,7 +16,7 @@ namespace Tariffs.Data
             {
                 var newTariffs = yieldFreshTariffs().ToDictionary(t => t.Name, StringComparer.OrdinalIgnoreCase);
 
-                // in a thread-safe, atomic manner, update the mutable state with our new tariff data
+                // in a thread-safe, atomic manner, update the mutable state with our new tariff data.
                 Interlocked.Exchange(ref _tariffs, newTariffs);
             });
         }

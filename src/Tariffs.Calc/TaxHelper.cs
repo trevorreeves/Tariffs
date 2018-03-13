@@ -1,6 +1,6 @@
 ﻿namespace Tariffs.Calc
 {
-    public static class TaxHelper // TODO: interface ?
+    public static class TaxHelper
     {
         private const decimal VAT_RATE = 1.05M;
 

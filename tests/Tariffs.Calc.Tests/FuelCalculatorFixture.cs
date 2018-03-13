@@ -29,19 +29,54 @@ namespace Tariffs.Calc.Tests
         }
 
         [Fact]
-        public void CostsPerTariff_GasNotInTariff_ReturnsCosts()
+        public void CostsPerTariff_GasUsageNotSupplied_ReturnsCostsForValidTariffs()
         {
             // Arrange
-            var tariff = new Tariff("test", 2m, null, 4m);
+            var tariff1 = new Tariff("test1", 2m, 3m, 4m);
+            var tariff2 = new Tariff("test2", null, 6m, 8m);
 
             // Act
-            var actual = FuelCalculator.CostsPerTariff(new[] { tariff }, new Kwh<Power>(1000), new Kwh<Gas>(2000)).ToList();
+            var actual = FuelCalculator.CostsPerTariff(new[] { tariff1, tariff2 }, new Kwh<Power>(1000), null).ToList();
+
+            // Assert
+            actual.Should().HaveCount(1);
+            var actualCost = actual.First();
+            actualCost.Tariff.Should().Be(tariff1);
+            actualCost.Total.PostTax.Should().Be(((4 * 12) + (1000 * 2)) * 1.05M);
+        }
+
+        [Fact]
+        public void CostsPerTariff_PowerUsageNotSupplied_ReturnsCostsForValidTariffs()
+        {
+            // Arrange
+            var tariff1 = new Tariff("test1", 2m, null, 4m);
+            var tariff2 = new Tariff("test2", 4m, 6m, 8m);
+
+            // Act
+            var actual = FuelCalculator.CostsPerTariff(new[] { tariff1, tariff2 }, null, new Kwh<Gas>(2000)).ToList();
+
+            // Assert
+            actual.Should().HaveCount(1);
+            var actualCost = actual.First();
+            actualCost.Tariff.Should().Be(tariff2);
+            actualCost.Total.PostTax.Should().Be(((8 * 12) + (2000 * 6)) * 1.05M);
+        }
+
+        [Fact]
+        public void CostsPerTariff_GasNotInTariff_TariffIgnored()
+        {
+            // Arrange
+            var tariff = new Tariff("test", 2m, 3m, 4m);
+            var tariff2 = new Tariff("test2", 4m, null, 8m);
+
+            // Act
+            var actual = FuelCalculator.CostsPerTariff(new[] { tariff, tariff2 }, new Kwh<Power>(1000), new Kwh<Gas>(2000)).ToList();
 
             // Assert
             actual.Should().HaveCount(1);
             var actualCost = actual.First();
             actualCost.Tariff.Should().Be(tariff);
-            actualCost.Total.PostTax.Should().Be(((4 * 12) + (1000 * 2)) * 1.05M);
+            actualCost.Total.PostTax.Should().Be(((4 * 12) + (1000 * 2) + (4 * 12) + (2000 * 3)) * 1.05M);
         }
 
         [Fact]
@@ -51,7 +86,7 @@ namespace Tariffs.Calc.Tests
             var tariff = new Tariff("test", null, 3m, 4m);
 
             // Act
-            var actual = FuelCalculator.CostsPerTariff(new[] { tariff }, new Kwh<Power>(1000), new Kwh<Gas>(2000)).ToList();
+            var actual = FuelCalculator.CostsPerTariff(new[] { tariff }, null, new Kwh<Gas>(2000)).ToList();
 
             // Assert
             actual.Should().HaveCount(1);
