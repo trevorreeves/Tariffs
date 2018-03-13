@@ -21,7 +21,8 @@ namespace Tariffs.Console
                 {
                     var tariffName = ctx.GetRequiredString("TARIFF_NAME");
                     var fuelType = ctx.GetRequiredEnum<FuelType>("FUEL_TYPE");
-                    var monthlyBudget = TaxedValue.FromPostTaxValue(ctx.GetRequiredDecimal("TARGET_MONTHLY_SPEND"),
+                    var monthlyBudget = TaxedValue.FromPostTaxValue(
+                        ctx.GetRequiredDecimal("TARGET_MONTHLY_SPEND"),
                         TaxHelper.RemoveTax);
 
                     if (!source.TryGet(tariffName, out var tariff))
@@ -29,7 +30,7 @@ namespace Tariffs.Console
                         return Commands.Error($"The specified tariff doesn't exist '{tariffName}'.");
                     }
 
-                    // c# has no proper pattern matching, so I've run out of functional luck here...
+                    // c# has no proper pattern matching, so I've run out of functional luck here, apologies for the switch statement...
 
                     switch (fuelType)
                     {
@@ -37,15 +38,15 @@ namespace Tariffs.Console
                             if (!tariff.GasRate.HasValue)
                                 return Commands.Error($"Tariff '{tariff.Name}' does not include {FuelType.Gas}.");
 
-                            ctx.Output.WriteLine(FuelCalculator.AnnualGasUsage(tariff, monthlyBudget)
-                                .GetValueOrDefault().Value); // just output 0 if tariff doesn't include fuel type
+                            ctx.Output.WriteLine(
+                                FuelCalculator.AnnualGasUsage(tariff, monthlyBudget).GetValueOrDefault().Value); // just output 0 if tariff doesn't include fuel type
                             break;
                         case FuelType.Power:
                             if (!tariff.PowerRate.HasValue)
                                 return Commands.Error($"Tariff '{tariff.Name}' does not include {FuelType.Power}.");
 
-                            ctx.Output.WriteLine(FuelCalculator.AnnualPowerUsage(tariff, monthlyBudget)
-                                .GetValueOrDefault().Value);
+                            ctx.Output.WriteLine(
+                                FuelCalculator.AnnualPowerUsage(tariff, monthlyBudget).GetValueOrDefault().Value);
                             break;
                         default:
                             return Commands.Error($"Unsupported fuel type : {fuelType}");

@@ -1,5 +1,9 @@
 ﻿namespace Tariffs
-{
+{ 
+    /// <summary>
+    /// Because I'm done with semantic null's.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Option<T> where T : class
     {
         public Option()

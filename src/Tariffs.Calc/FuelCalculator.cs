@@ -9,6 +9,7 @@ namespace Tariffs.Calc
     public static class FuelCalculator
     {
         public static IEnumerable<UsageCost> CostsPerTariff(IEnumerable<Tariff> tariffs, Kwh<Power>? powerUsage, Kwh<Gas>? gasUsage) => 
+            // we take care as either the tariffs could only have partial fuel coverage, and or the customer usage might be partial
             tariffs
                 .Where(t => ((powerUsage.HasValue && t.PowerRate.HasValue) || !powerUsage.HasValue) &&
                             ((gasUsage.HasValue && t.GasRate.HasValue) || !gasUsage.HasValue)) // only include compatible tariffs

@@ -15,12 +15,14 @@ namespace Tariffs.Console
                 new[] {"POWER_USAGE_KWH", "GAS_USAGE_KWH"},
                 ctx =>
                 {
+                    // model 0's explicitly as no fuel supply for that type
                     var p = ctx.GetRequiredDecimal("POWER_USAGE_KWH");
                     var powerKwh = p == 0 ? new Kwh<Power>?() : new Kwh<Power>(p);
 
                     var g = ctx.GetRequiredDecimal("GAS_USAGE_KWH");
                     var gasKwh = g == 0 ? new Kwh<Gas>?() : new Kwh<Gas>(g);
 
+                    // calculate the costs and output
                     foreach (var line in FuelCalculator
                         .CostsPerTariff(source.GetAll(), powerKwh, gasKwh)
                         .Select(cost => $"{cost.Tariff.Name} {cost.Total.PostTax:F2}"))
