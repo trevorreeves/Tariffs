@@ -20,6 +20,7 @@ namespace Tariffs.CommandLine
         }
 
         public string CommandName { get; }
+
         public TextWriter Output { get; }
 
         public IReadOnlyDictionary<string, string> Parameters { get; }

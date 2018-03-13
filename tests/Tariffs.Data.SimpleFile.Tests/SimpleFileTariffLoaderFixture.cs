@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using FluentAssertions;
 using Xunit;
 
@@ -12,25 +13,21 @@ namespace Tariffs.Data.SimpleFile.Tests
         {
             var actual = SimpleFileTariffLoader.Load(new FileInfo("./data/prices.json"));
 
-            //{ "tariff": "better-energy", "rates": { "power":  0.1367, "gas": 0.0288}, "standing_charge": 8.33},
-            //{ "tariff": "2yr-fixed", "rates": { "power": 0.1397, "gas": 0.0296}, "standing_charge": 8.75},
-            //{ "tariff": "greener-energy", "rates": { "power":  0.1544}, "standing_charge": 8.33},
-            //{ "tariff": "simpler-energy", "rates": { "power":  0.1396, "gas": 0.0328}, "standing_charge": 8.75}
+            var actualLookup = actual.ToLookup(t => t.Name);
+            actualLookup.Should().HaveCount(4);
 
-            actual.Should().HaveCount(4);
+            actualLookup["2yr-fixed"].Should().HaveCount(1);
+            actualLookup["simpler-energy"].Should().HaveCount(1);
 
-            actual.Keys.Should()
-                .BeEquivalentTo(new[] {"better-energy", "2yr-fixed", "greener-energy", "simpler-energy"});
-
-            var better = actual["better-energy"];
+            var better = actualLookup["better-energy"].Single();
             better.Name.Should().Be("better-energy");
             better.GasRate.Should().Be(0.0288M);
             better.PowerRate.Should().Be(0.1367M);
             better.StandingCharge.Should().Be(8.33M);
 
-            var greener = actual["greener-energy"];
+            var greener = actualLookup["greener-energy"].Single();
             greener.Name.Should().Be("greener-energy");
-            greener.GasRate.Should().Be(0M);
+            greener.GasRate.Should().BeNull();
             greener.PowerRate.Should().Be(0.1544M);
             greener.StandingCharge.Should().Be(8.33M);
         }

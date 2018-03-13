@@ -22,10 +22,10 @@ namespace Tariffs.Data.Tests
         {
             // arrange
             var expected = new Tariff("two", 4.0M, 5.0M, 6.0M);
-            await _source.ReloadAsync(() => new Dictionary<string, Tariff>()
+            await _source.ReloadAsync(() => new []
             {
-                { "one", new Tariff("one", 1.0M, 2.0M, 3.0M) },
-                { expected.Name,  expected }
+                new Tariff("one", 1.0M, 2.0M, 3.0M),
+                expected
             });
 
             // act
@@ -40,10 +40,10 @@ namespace Tariffs.Data.Tests
         {
             // arrange
             var expected = new Tariff("two", 4.0M, 5.0M, 6.0M);
-            await _source.ReloadAsync(() => new Dictionary<string, Tariff>()
+            await _source.ReloadAsync(() => new []
             {
-                { "one", new Tariff("one", 1.0M, 2.0M, 3.0M) },
-                { expected.Name,  expected }
+                new Tariff("one", 1.0M, 2.0M, 3.0M),
+                expected
             });
 
             // act
@@ -57,9 +57,9 @@ namespace Tariffs.Data.Tests
         public async Task TryGet_TariffDoesntExist_ReturnsFalse()
         {
             // arrange
-            await _source.ReloadAsync(() => new Dictionary<string, Tariff>()
+            await _source.ReloadAsync(() => new []
             {
-                { "one", new Tariff("one", 1.0M, 2.0M, 3.0M) },
+                new Tariff("one", 1.0M, 2.0M, 3.0M)
             });
 
             // act
@@ -75,10 +75,10 @@ namespace Tariffs.Data.Tests
             // arrange
             var one = new Tariff("one", 1.0M, 2.0M, 3.0M);
             var two = new Tariff("two", 4.0M, 5.0M, 6.0M);
-            await _source.ReloadAsync(() => new Dictionary<string, Tariff>()
+            await _source.ReloadAsync(() => new []
             {
-                { one.Name, one },
-                { two.Name, two }
+                one,
+                two
             });
 
             // act
@@ -92,7 +92,7 @@ namespace Tariffs.Data.Tests
         public async Task GetAll_NoTariffs_ReturnsEmpty()
         {
             // arrange
-            await _source.ReloadAsync(() => new Dictionary<string, Tariff>());
+            await _source.ReloadAsync(() => new Tariff[0]);
 
             // act
             var actual = _source.GetAll();
@@ -106,10 +106,10 @@ namespace Tariffs.Data.Tests
         {
             // arrange
             var expected = new Tariff("two", 4.0M, 5.0M, 6.0M);
-            await _source.ReloadAsync(() => new Dictionary<string, Tariff>()
+            await _source.ReloadAsync(() => new []
             {
-                { "one", new Tariff("one", 1.0M, 2.0M, 3.0M) },
-                { expected.Name,  expected }
+                new Tariff("one", 1.0M, 2.0M, 3.0M),
+                expected
             });
 
             // act
@@ -124,10 +124,10 @@ namespace Tariffs.Data.Tests
         {
             // arrange
             var expected = new Tariff("two", 4.0M, 5.0M, 6.0M);
-            await _source.ReloadAsync(() => new Dictionary<string, Tariff>()
+            await _source.ReloadAsync(() => new []
             {
-                { "one", new Tariff("one", 1.0M, 2.0M, 3.0M) },
-                { expected.Name,  expected }
+                new Tariff("one", 1.0M, 2.0M, 3.0M),
+                expected
             });
 
             // act
@@ -164,8 +164,7 @@ namespace Tariffs.Data.Tests
                         _source.ReloadAsync(() =>
                             Enumerable
                                 .Range(1, rand.Next(5, 100))
-                                .Select(j => new Tariff(j.ToString(), j * 2, j * 3, j * 4))
-                                .ToDictionary(t => t.Name));
+                                .Select(j => new Tariff(j.ToString(), j * 2, j * 3, j * 4)));
                     }
                 });
 

@@ -6,7 +6,7 @@ namespace Tariffs.Data
 {
     public interface ITariffSource
     {
-        Task ReloadAsync(Func<Dictionary<string, Tariff>> yieldFreshTariffs);
+        Task ReloadAsync(Func<IEnumerable<Tariff>> yieldFreshTariffs);
 
         IEnumerable<Tariff> Find(Func<Tariff, bool> predicate);
 
