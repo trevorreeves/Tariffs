@@ -43,6 +43,12 @@ I've tried my best to stay functional wherever possible.  All classes are immuta
 
 I tried to stay clear of using many third party libraries - Newtonsoft.Json is used to deserialize JSON, and Microsoft.Extensions.DependencyInjection (DI container) is used to do a small amount of DI at the start, though I tried to avoid building the whole app based on it.
 
+### VNext
+
+Given more time, of course I would add unit test coverage for Tariffs.CommandLine and Tariffs.Console - all these are unit testable. Also it would be trivial to add some automated end-to-end or integration tests that test all the components combined, either with  the json file implementation faked with an in memory, or even hitting disk and loading in the data from the file.
+
+Behaviour wise it would be simple to extend the CommandLine component to support an interactive (or REPL) mode, and to implement a file watcher that emits events to which the file loader was subscribed, to refresh the Tariff data whenever it was updated. The same pattern would apply if the tariffs were stored in a db and other application components were notifying the app of changes.
+
 ### Assemblies
 
 *Tariffs.Console*
